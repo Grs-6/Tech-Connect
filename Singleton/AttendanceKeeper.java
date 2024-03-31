@@ -10,7 +10,7 @@ public class AttendanceKeeper {
     }
 
     // initialize instance-> access point for all clients
-    public static synchronized AttendanceKeeper getInstance() {
+    public static AttendanceKeeper getInstance() {
         if (instance == null) {
             instance = new AttendanceKeeper();
         }
