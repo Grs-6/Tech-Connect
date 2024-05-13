@@ -1,14 +1,20 @@
 package mutex;
 
 public class Printer {
-    public synchronized void printDocument(String document, String employeeName) {
-        System.out.println(employeeName + " is printing: " + document);
-        // Simulate printing process
+   private final Lock lock = new ReentrantLock();
+
+    public void printDocument(String document, String employeeName) {
+        lock.lock();
+     
         try {
+            System.out.println(employeeName + " is printing: " + document);
             Thread.sleep(2000); // Simulating printing time
+            System.out.println(employeeName+" finished printing");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(employeeName+" finished printing");
+        finally {
+            lock.unlock();
+        }
     }
 }
